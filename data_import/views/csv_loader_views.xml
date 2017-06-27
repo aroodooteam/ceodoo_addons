@@ -32,7 +32,7 @@
                         <separator string="Base Models" colspan="4"/>
                         <separator string="Actions" colspan="4"/>
                         <button string="Import" icon="gtk-ok" type="object" name="main_import_product"/>
-                        <!--<button string="Direct Import" icon="gtk-ok" type="object" name="importCsvFixedParam"/>-->
+                        <button string="Import Customer" icon="gtk-ok" type="object" name="main_import_partner"/>
                     </sheet>
                 </form>
             </field>

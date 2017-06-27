@@ -25,6 +25,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//sheet/div/field[@name='category_id']" position="after">
                     <field name="matricule" placeholder="Matricule"/>
+                    <field name="service" placeholder="Service"/>
                 </xpath>
             </field>
         </record>

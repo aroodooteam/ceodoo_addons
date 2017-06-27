@@ -7,3 +7,4 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     matricule = fields.Char(string='Matricule', size=8)
+    service = fields.Char(string='Service')

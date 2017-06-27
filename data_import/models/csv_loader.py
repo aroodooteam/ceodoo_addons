@@ -101,6 +101,45 @@ class CsvLoader(models.Model):
                 # _logger.info('=== read %d / %s ===' % (i+1, total))
         return True
 
+# =================================================================
+    @api.multi
+    def CheckTitle(self, title):
+        if not title:
+            return False
+        title_obj = self.env['res.partner.title']
+        if title == 'M':
+            title = 'Madam'
+        else:
+            title = 'Mister'
+        title_id = title_obj.search([('name', '=', title)])
+        return title_id
+
+    @api.multi
+    def CheckPartner(self, line):
+        if not line:
+            return False
+        matricule = line.get('matricule')
+        name = '[' + matricule + '] ' + line.get('name')
+        function = line.get('function', '')
+        service = line.get('service', '')
+        title =  line.get('title', '')
+        partner_obj = self.env['res.partner']
+        partner_id = partner_obj.search([('matricule', '=', matricule)])
+        if not partner_id:
+            vals = {
+                'matricule': matricule,
+                'name': name,
+                'function': function,
+                'service': service,
+                'title': self.CheckTitle(title).id if self.CheckTitle(title) else False,
+                'customer': True,
+                'lang': 'fr_FR',
+                'ref': matricule,
+            }
+            partner_obj.create(vals)
+        else:
+            partner_id.write({'name': name})
+
     @api.multi
     def main_import_partner(self):
         with open(self.csv_path, 'rb') as csv_count:
@@ -111,4 +150,5 @@ class CsvLoader(models.Model):
             for i, line in enumerate(reader):
                 st = timeit.default_timer()
                 _logger.info('=== line = %s ===' % line)
+                self.CheckPartner(line)
         return True
