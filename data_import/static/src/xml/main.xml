@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <!-- QWEB Templates for UI Widgets and views -->
+
+  <!--
+
+  <t t-name="data_importView">
+    <div class="oe_data_import_view">
+      <div class="oe_data_import_buttons"/>>
+      <table class="oe_data_import_groups">
+        <tr class="oe_data_import_groups_headers">
+          <td class="oe_data_import_dummy_cell"><div/></td>
+        </tr>
+        <tr class="oe_data_import_dummy_row">
+        </tr>
+      </table>
+    </div>
+  </t>
+
+  -->
+
+</templates>
